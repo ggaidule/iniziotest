@@ -3,8 +3,13 @@
 <html>
 <head>
 	<title>Google Custom Search Bar</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script
-
+    <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        function saveResults() {
+          // implementation here
+        }
+      </script>
 </head>
 <body>
 	<label for="q">Search Google:</label>
@@ -46,17 +51,15 @@
 			$("#searchResults").html(html);
 		}
 
-		function saveResults() {
-			var savedHtml = "";
-			for (var i = 0; i < searchResults.length; i++) {
-				var result = searchResults[i];
-				savedHtml += "<div>";
-				savedHtml += "<h3><a href='" + result.link + "'>" + result.title + "</a></h3>";
-				savedHtml += "<p>" + result.snippet + "</p>";
-				savedHtml += "</div>";
-			}
-			$("#savedResults").html(savedHtml);
-		}
+        function saveResults() {
+            if (searchResults.length === 0) {
+              alert("No search results to save.");
+              return;
+            }
+          
+            var blob = new Blob([JSON.stringify(searchResults)], {type: "application/json"});
+            saveAs(blob, "search_results.json");
+          }
 	</script>
 </body>
 </html>
