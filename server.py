@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import filedialog
+from tkinter import messagebox
 import requests
 import json
 
@@ -23,6 +24,9 @@ def save_file(html):
     if save_path:
         with open(save_path, "w", encoding="utf-8") as file:
             file.write(html)
+            # Add this line to display a message box after saving the file
+            tk.messagebox.showinfo(title="File saved", message=f"File saved to {save_path}")
+
 
 # Create the GUI window
 window = tk.Tk()
