@@ -1,29 +1,21 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Google Custom Search Bar</title>
     <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script>
-        function saveResults() {
-          // implementation here
-        }
-      </script>
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<label for="q">Search Google:</label>
+	<label for="q">Search Keywords:</label>
 	<input type="text" id="q" name="q">
 	<input type="button" value="Search" onclick="searchGoogle()">
 	<input type="button" value="Save Results" onclick="saveResults()">
 	<div id="searchResults"></div>
 	<div id="savedResults"></div>
 		
-  <a href="path/to/file" download>
-      <button>Save As</button>
-    </a>
+  
 	<script>
-		// Replace YOUR_API_KEY with your actual API key
 		var apiKey = "AIzaSyA75V6nWkMpMUqROUhEg-HsMhIS6IUWjkM";
 		var cx = "c2d43f76a34aa488e";
 
@@ -31,12 +23,14 @@
 
 		function searchGoogle() {
 			var query = $("#q").val();
-			var url = "https://www.googleapis.com/customsearch/v1?key=" + apiKey + "&cx=" + cx + "&q=" + query + "&num=10&callback=handleResponse";
+			var url = "https://www.googleapis.com/customsearch/v1?key=" + apiKey + "&cx=" + cx + "&q=" + query + "&num=10&google.searchParameter=ncr&callback=handleResponse";
 			$.ajax({
 				url: url,
 				dataType: "jsonp"
 			});
 		}
+
+		
 
 		function handleResponse(response) {
 			searchResults = response.items;
